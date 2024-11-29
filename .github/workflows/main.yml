@@ -7,5 +7,40 @@ jobs:
   Compile:
     runs-on: self-hosted
     steps:
-      - name: test
-        run: echo "Hello World!"
+      - name: Checkout Main Git
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4.1.0
+        with:
+          dotnet-version: 8.0.x
+      
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install wasm toolchain
+        run: rustup update && rustup target add wasm32-wasip1
+
+      - name: Clone ZED repository
+        run: |
+          git clone https://github.com/zed-industries/zed -b main zed
+          cd zed
+
+      - name: Build using Cargo
+        run: cargo build --release
+
+      - name: Tar action
+        uses: a7ul/tar-action@v1.2.0
+        id: compress
+        with:
+          command: c
+          files: zed\target\release\zed.exe
+          outPath: zed\target\release\zed-ci-build-windows_x64.tar.gz
+      
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: Testing artifact
+          path: zed\target\release\zed-ci-build-windows_x64.tar.gz
+            
+            
