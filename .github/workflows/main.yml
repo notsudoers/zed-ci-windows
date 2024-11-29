@@ -6,6 +6,9 @@ on:
 jobs:
   Compile:
     runs-on: self-hosted
+    env:
+      DOTNET_INSTALL_DIR: "${{ github.workspace }}/.net/"
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
       - name: Checkout Main Git
         uses: actions/checkout@v4.2.2
