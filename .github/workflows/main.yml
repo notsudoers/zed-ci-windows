@@ -1,0 +1,11 @@
+name: CI Build Zed for Windows
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  Compile:
+    runs-on: self-hosted
+    steps:
+      - name: test
+        run: echo "Hello World!"
