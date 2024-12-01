@@ -9,8 +9,9 @@ on:
 jobs:
   Compile:
     runs-on: self-hosted
-    # env:
-    #   DOTNET_INSTALL_DIR: "${{ github.workspace }}/.net/"
+    env:
+      DOTNET_ROOT: 'C:\Program Files\dotnet'
+      # DOTNET_INSTALL_DIR: "${{ github.workspace }}/.net/"
     #   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
       - name: Checkout Main Git
@@ -24,7 +25,7 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
         with:
-          msbuild-architecture: x64
+          # msbuild-architecture: x64
           vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
           # vs-version: '[17.12.2,17.12.2)'
 
