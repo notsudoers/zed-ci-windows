@@ -23,7 +23,7 @@ jobs:
         with:
           msbuild-architecture: x64
           vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
-          vs-version: '[17.12.2,17.12.2)'
+          # vs-version: '[17.12.2,17.12.2)'
 
       - name: Install wasm toolchain
         run: rustup update && rustup target add wasm32-wasip1
