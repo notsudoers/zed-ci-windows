@@ -15,19 +15,19 @@ jobs:
     #   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
       - name: Checkout Main Git
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
       
       - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v2.0.0
         with:
-          # msbuild-architecture: x64
+          msbuild-architecture: x64
           vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
-          # vs-version: '[17.12.2,17.12.2)'
+          vs-version: '17.12.2'
 
       - name: Install wasm toolchain
         run: rustup update && rustup target add wasm32-wasip1
