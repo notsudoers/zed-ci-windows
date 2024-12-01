@@ -20,6 +20,8 @@ jobs:
       
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
 
       - name: Install wasm toolchain
         run: rustup update && rustup target add wasm32-wasip1
